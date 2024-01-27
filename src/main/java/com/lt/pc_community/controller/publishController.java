@@ -65,6 +65,8 @@ public class publishController {
         question.setTitle(title);
         question.setDescription(description);
         question.setTag(tag);
+        question.setGmt_create(System.currentTimeMillis());
+        question.setGmt_modify(question.getGmt_create());
         questionMapper.insertQuestion(question);
         return "redirect:/";
     }

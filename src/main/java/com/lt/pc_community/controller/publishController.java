@@ -25,7 +25,7 @@ public class publishController {
     @GetMapping("/publish")
     public String publish(){
         return "publish";
-        
+
     }
     @PostMapping("/publish")
     public String doPublish(

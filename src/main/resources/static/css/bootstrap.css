@@ -1602,10 +1602,11 @@ pre code {
   }
 }
 .container-fluid {
+  background-image: url('imgs/background.png');
   padding-right: 15px;
   padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 .row {
   margin-right: -15px;

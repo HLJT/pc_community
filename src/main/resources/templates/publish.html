@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>点云社区</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.css">
+  <link rel="stylesheet" href="css/pc_community.css">
+  <script src="js/bootstrap.js" type="javascript"></script>
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">点云社区</span>
+      </button>
+      <a class="navbar-brand" href="#">点云社区</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="搜索问题">
+        </div>
+        <button type="submit" class="btn btn-default">搜索</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li th:if="${session.user == null}"><a href="https://github.com/login/oauth/authorize?client_id=5e3259b8b7b7610b37de&redirect_uri=http://localhost:8080/callback&scope=user&state=223">登录</a></li>
+        <li class="dropdown" th:if="${session.user!=null}">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" th:text="${session.user.getName()}"><span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">个人资料</a></li>
+            <li><a href="#">消息中心</a></li>
+            <li><a href="#">退出登录</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container-fluid main">
+  <div class="row" >
+    <div class="col-lg-9 col-md-12 col-xs-12 col-sm-12" >
+      <h2> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 发起</h2>
+      <hr>
+
+      <form>
+        <div class="form-group">
+          <label for="title">问题标题（简单扼要）</label>
+          <input type="email" class="form-control" id="title" placeholder="问题标题...">
+        </div>
+        <div class="form-group">
+          <label for="description">问题描述</label>
+          <textarea class="form-control" name="description" id="description" rows=10></textarea>
+        </div>  b
+        <div class="form-group">
+          <label for="tag">添加标签</label>
+          <input type="text"  id="tag" placeholder="输入标签，以逗号分割...">
+        </div>
+
+        <button type="submit" class="btn-publish">发布</button>
+      </form>
+
+    </div>
+    <div class="col-lg-3 col-md-12 col-xs-12 col-sm-12" >
+      <h3>问题发起指南</h3>
+      <dl>
+        <dt>问题标题</dt>
+        <dd>请用精简的语言描述您发布的问题，不超过25字</dd>
+      </dl>
+      <dl>
+        <dt>问题描述</dt>
+        <dd>详细补充您的问题，并确保问题描述清楚且直观</dd>
+      </dl>
+      <dl>
+        <dt>选择标签</dt>
+        <dd>选择一个或者多个合适的标签，方便您的问题被更多人看到</dd>
+      </dl>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

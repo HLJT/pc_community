@@ -13,3 +13,13 @@ body{
     background-color: #5cb85c;
     border-color: #4cae4c;
 }
+.media-object{
+    height: 40px;
+    width: 40px;
+}
+
+.text-desc{
+    font-size: 12px;
+    font-weigth: normal;
+    color: #999;
+}

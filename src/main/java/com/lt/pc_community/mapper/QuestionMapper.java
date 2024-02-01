@@ -9,10 +9,13 @@ import java.util.List;
 
 @Mapper
 public interface QuestionMapper {
-    @Insert("insert into question (creator, title, description, gmt_create, gmt_modify,tag) values (#{creator},#{title},#{description},#{gmt_create},#{gmt_modify},#{tag})")
+    @Insert("insert into question (creator, title, description, gmt_create, gmt_modify,comment_count, view_count, like_count, tag) values (#{creator},#{title},#{description},#{gmt_create},#{gmt_modify},#{comment_count},#{view_count},#{like_count},#{tag})")
     void insertQuestion(Question question);
 
-    @Select("select * from question")
-    List<Question> searchQuestion();
+    @Select("select * from question limit ${offset},${size}")
+    List<Question> searchQuestion(Integer offset, Integer size);
+
+    @Select("select count(*) from question")
+    Integer countData();
 
 }

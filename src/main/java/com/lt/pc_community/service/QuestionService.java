@@ -1,5 +1,6 @@
 package com.lt.pc_community.service;
 
+import com.lt.pc_community.dto.PageDTO;
 import com.lt.pc_community.dto.QuestionDTO;
 import com.lt.pc_community.mapper.QuestionMapper;
 import com.lt.pc_community.mapper.UserMapper;
@@ -19,9 +20,12 @@ public class QuestionService {
     UserMapper userMapper;
     @Autowired
     QuestionMapper questionMapper;
-    public List<QuestionDTO> searchList() {
-        List<Question> questions=questionMapper.searchQuestion();
+    public PageDTO searchList(Integer page, Integer size) {
+        Integer offset=size*(page-1);
+//        select * from question limit offset,size
+        List<Question> questions=questionMapper.searchQuestion(offset,size);
         List<QuestionDTO> questionDTOList = new ArrayList<>();
+        PageDTO pageDTO = new PageDTO();
         for(Question q : questions){
             User user=userMapper.findById(q.getCreator());
             QuestionDTO questionDTO = new QuestionDTO();
@@ -29,6 +33,9 @@ public class QuestionService {
             questionDTO.setUser(user);
             questionDTOList.add(questionDTO);
         }
-        return questionDTOList;
+        pageDTO.setQuestions(questionDTOList);
+        Integer totalData = questionMapper.countData();
+        pageDTO.setPagination(totalData,page,size);
+        return pageDTO;
     }
 }

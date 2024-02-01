@@ -23,3 +23,6 @@ body{
     font-weigth: normal;
     color: #999;
 }
+.pagination{
+    float: right;
+}
